@@ -101,3 +101,49 @@ abline (simple_model)
 multiple_model <- lm(price~.,data = df)
 summary(multiple_model)
 
+#split data into test and train
+#install required package
+install.packages("caTools")
+library("caTools")
+
+#set seed
+set.seed(0)
+
+#split data
+split = sample.split(df,SplitRatio = 0.8)
+training_set = subset(df,split==TRUE)
+test_set = subset(df, split==FALSE)
+
+#run linear model on training dataset
+lm_a = lm(price~., data = training_set)
+summary(lm_a)
+
+#predict value of price
+train_a = predict(lm_a, training_set)
+test_a = predict(lm_a, test_set)
+
+mean((training_set$price - train_a)^2)
+mean((test_set$price - test_a)^2)
+
+#subset selectin
+#install requred library
+install.packages("leaps")
+library("leaps")
+
+lm_best = regsubsets(price~., data = df, nvmax = 15)
+summary(lm_best)
+
+#get adjusted r2 value
+summary(lm_best)$adjr2
+
+#get which dot max value\
+which.max(summary(lm_best)$adjr2)
+
+coef(lm_best, 8)
+
+#run forward and backward selection
+lm_forward = regsubsets(price~., data = df, nvmax = 15, method = "forward")
+summary(lm_forward)
+lm_backward = regsubsets(price~., data = df, nvmax = 15, method = "backward")
+summary(lm_backward)
+
