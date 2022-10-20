@@ -97,3 +97,7 @@ summary(simple_model)
 #plot rrom number nd price
 plot(df$room_num, df$price)
 abline (simple_model)
+
+multiple_model <- lm(price~.,data = df)
+summary(multiple_model)
+
