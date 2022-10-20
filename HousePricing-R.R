@@ -89,3 +89,11 @@ round(cor(df),2)
 #park and air quality will lead to multi-collinearity
 #we will remove park as it has higher correlation
 df <- df[ , -13]
+
+#get linear regression model
+simple_model <- lm(price~room_num, data = df)
+summary(simple_model)
+
+#plot rrom number nd price
+plot(df$room_num, df$price)
+abline (simple_model)
