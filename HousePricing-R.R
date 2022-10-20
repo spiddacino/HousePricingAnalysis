@@ -74,3 +74,12 @@ rm(df2)     #delete df2
 
 #remove unnecessary column bus_terminal
 df <- df[ , -14]
+
+#create dummy variables for all the categorical variable
+df$airport <- ifelse(df$airport == "YES", 1,0)
+df$river <- ifelse(df$waterbody == "River" | df$waterbody == "Lake and River", 1,0)
+df$lake <- ifelse(df$waterbody == "Lake"  | df$waterbody == "Lake and River", 1,0)
+
+#remove water body column
+df <- df[ , -12]
+
