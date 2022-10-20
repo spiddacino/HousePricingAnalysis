@@ -53,3 +53,24 @@ df$n_hos_beds[is.na(df$n_hos_beds)] <- mean(df$n_hos_beds,na.rm = TRUE)
 
 #checking changes
 summary(df$n_hos_beds)
+
+#plot pair plot of price and crime data
+pairs(~price+crime_rate, data=df)
+plot(df$price, df$crime_rate)
+
+#transform to logrithmic format
+df$crime_rate = log(1+df$crime_rate)
+
+#get new variable to represent dist 1,2,3,4
+df$avg_dist = (df$dist1 + df$dist2 + df$dist3 + df$dist4)/4
+
+#view the new data
+View(df)
+
+#delete dist1,2,3,4
+df2 <- df[ ,-7:-10] 
+df <- df2   #reassign back to df
+rm(df2)     #delete df2
+
+#remove unnecessary column bus_terminal
+df <- df[ , -14]
