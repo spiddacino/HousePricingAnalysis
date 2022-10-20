@@ -28,3 +28,17 @@ barplot(table(df$bus_ter)) #only 1 value hence not useful in the data set
 #2: hos_beds has missing values
 #3: bus terminal is useless value
 #4: crime rate has some functional relationship with price
+
+#Outlier treatment
+quantile(df$n_hot_rooms,0.99)
+uv = quantile(df$n_hot_rooms,0.99)
+df$n_hot_rooms[df$n_hot_rooms>uv] <- uv 
+
+#checking changes
+summary(df$n_hot_rooms)
+
+lv = 0.3 * quantile(df$rainfall, 0.01)
+df$rainfall[df$rainfall < lv] <- lv
+
+#checking changes
+summary(df$rainfall)
