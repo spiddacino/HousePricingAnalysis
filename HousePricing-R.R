@@ -42,3 +42,14 @@ df$rainfall[df$rainfall < lv] <- lv
 
 #checking changes
 summary(df$rainfall)
+
+#handling missing values with mean
+mean(df$n_hos_beds,na.rm = TRUE)
+
+#positions with na values
+which(is.na(df$n_hos_beds))
+
+df$n_hos_beds[is.na(df$n_hos_beds)] <- mean(df$n_hos_beds,na.rm = TRUE)
+
+#checking changes
+summary(df$n_hos_beds)
