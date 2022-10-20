@@ -83,3 +83,9 @@ df$lake <- ifelse(df$waterbody == "Lake"  | df$waterbody == "Lake and River", 1,
 #remove water body column
 df <- df[ , -12]
 
+#get correlation matrix rounded to 2 dp
+round(cor(df),2)
+
+#park and air quality will lead to multi-collinearity
+#we will remove park as it has higher correlation
+df <- df[ , -13]
