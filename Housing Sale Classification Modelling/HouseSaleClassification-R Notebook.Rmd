@@ -1,0 +1,31 @@
+---
+title: "R Notebook"
+output: House Sale Classification Modelling R notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+#import dataset
+df<- read.csv("Classification+preprocessed+data+R.csv", header=TRUE)
+```
+
+```{r}
+names(df)[1]<-paste("price")
+```
+
+```{r}
+head(df)
+```
+
+Logistic regression with single variable
+```{r}
+glm.fit = glm(Sold~price, data = df, family = binomial)
+```
+
+```{r}
+summary(glm.fit)
+```
+
