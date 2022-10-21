@@ -38,3 +38,25 @@ glm.fit = glm(Sold~. , data = df, family = binomial)
 summary(glm.fit)
 ```
 
+```{r}
+glm.probs = predict(glm.fit, type = "response")
+```
+
+```{r}
+glm.probs[1:10]
+```
+
+```{r}
+#setting boundary value
+glm.pred = rep("NO", 506)
+```
+
+```{r}
+glm.pred[glm.probs>0.5] = "YES"
+```
+
+```{r}
+#create confusion matrix using table function
+table(glm.pred, df$Sold)
+```
+
