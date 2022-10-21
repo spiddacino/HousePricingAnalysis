@@ -28,4 +28,13 @@ glm.fit = glm(Sold~price, data = df, family = binomial)
 ```{r}
 summary(glm.fit)
 ```
+Run logistics regression with multiple variables
+```{r}
+glm.fit = glm(Sold~. , data = df, family = binomial)
+```
+
+
+```{r}
+summary(glm.fit)
+```
 
